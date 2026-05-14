@@ -10,7 +10,7 @@ const includes = [
   "Сдача аккаунта под ключ за 3 дня",
 ]
 
-export function PricingSection() {
+export function PricingSection({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section className="bg-background px-6 py-24">
       <div className="max-w-5xl mx-auto">
@@ -66,6 +66,7 @@ export function PricingSection() {
             </ul>
 
             <motion.button
+              onClick={onOpenModal}
               className="w-full mt-10 bg-primary text-primary-foreground py-4 rounded-2xl font-bold text-base hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
               whileHover={{ scale: 1.01, y: -2 }}
               whileTap={{ scale: 0.98 }}

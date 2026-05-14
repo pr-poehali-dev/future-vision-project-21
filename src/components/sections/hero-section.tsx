@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Icon from "@/components/ui/icon"
 
-export function HeroSection() {
+export function HeroSection({ onOpenModal }: { onOpenModal: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -72,6 +72,7 @@ export function HeroSection() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mt-10">
             <motion.button
+              onClick={onOpenModal}
               className="text-white px-8 py-4 rounded-2xl text-base font-bold transition-all"
               style={{
                 background: "linear-gradient(135deg, #1976d2 0%, #2196f3 100%)",
