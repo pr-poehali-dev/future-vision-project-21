@@ -110,12 +110,32 @@ export function HeroSection({ onOpenModal }: { onOpenModal: () => void }) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          <img
-            src="https://cdn.poehali.dev/files/2ef249a5-05c1-4fcd-a5e9-48b0761a92f6.png"
-            alt="Ракетный запуск Авито"
-            className="w-full max-w-[560px] rounded-3xl object-cover"
-            style={{ filter: "drop-shadow(0 24px 60px rgba(33,150,243,0.25))" }}
-          />
+          <div className="relative w-full max-w-[480px]">
+            <img
+              src="https://cdn.poehali.dev/projects/53559aa5-a423-4679-a444-cd4c4fda7864/bucket/caa29d37-8852-4e5e-a586-77f4bad90dd0.png"
+              alt="Кирилл Суриков — Авитолог"
+              className="w-full rounded-3xl object-cover"
+              style={{ filter: "drop-shadow(0 24px 60px rgba(33,150,243,0.20))" }}
+            />
+            {/* Floating stats badge */}
+            <motion.div
+              className="absolute -bottom-4 -left-4 bg-card border border-border/60 rounded-2xl px-5 py-3 shadow-xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+            >
+              <p className="text-xs text-muted-foreground font-semibold">Просмотры сегодня</p>
+              <p className="text-2xl font-black text-foreground">712 <span className="text-primary text-sm">↑</span></p>
+            </motion.div>
+            <motion.div
+              className="absolute -top-4 -right-4 bg-primary text-white rounded-2xl px-4 py-2.5 shadow-lg text-sm font-bold"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.5, type: "spring" }}
+            >
+              🚀 За 3 дня
+            </motion.div>
+          </div>
         </motion.div>
       </div>
 

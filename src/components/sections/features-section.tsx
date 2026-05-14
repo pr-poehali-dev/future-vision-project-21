@@ -1,13 +1,6 @@
 import { motion } from "framer-motion"
 import Icon from "@/components/ui/icon"
 
-const stats = [
-  { value: "15+", label: "активных объявлений" },
-  { value: "700+", label: "просмотров в сутки" },
-  { value: "3 дня", label: "срок запуска" },
-  { value: "100%", label: "ниша бытовок и домов" },
-]
-
 const services = [
   {
     icon: "Search",
@@ -45,20 +38,20 @@ export function FeaturesSection() {
         >
           <p className="text-muted-foreground text-xs uppercase tracking-widest mb-12 font-semibold">Кто я</p>
 
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
-            {/* Avatar */}
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Photo */}
             <motion.div
               className="flex-shrink-0"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-3xl bg-secondary border border-border overflow-hidden">
+              <div className="w-56 h-72 lg:w-64 lg:h-80 rounded-3xl overflow-hidden border border-border/40 shadow-2xl shadow-foreground/10">
                 <img
-                  src="/placeholder-user.jpg"
+                  src="https://cdn.poehali.dev/projects/53559aa5-a423-4679-a444-cd4c4fda7864/bucket/caa29d37-8852-4e5e-a586-77f4bad90dd0.png"
                   alt="Кирилл Суриков"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </motion.div>
@@ -70,27 +63,13 @@ export function FeaturesSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
               >
-                <h2 className="text-3xl md:text-4xl font-black text-foreground">Кирилл Суриков</h2>
-                <p className="text-primary font-semibold mt-1 text-base">Авитолог · Маркетинг · Запуск воронок</p>
+                <h2 className="text-3xl md:text-5xl font-black text-foreground">Кирилл Суриков</h2>
+                <p className="text-primary font-semibold mt-2 text-base">Авитолог · Маркетинг · Запуск воронок</p>
+                <p className="text-muted-foreground mt-5 text-base font-medium leading-relaxed max-w-lg">
+                  Помогаю строительному бизнесу, продавцам бытовок и локальным компаниям получать заявки через Авито.
+                  Запускаю аккаунты под ключ — без лишних подрядчиков и долгих согласований.
+                </p>
               </motion.div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                {stats.map((s, i) => (
-                  <motion.div
-                    key={i}
-                    className="bg-secondary rounded-2xl p-5"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + i * 0.08 }}
-                    whileHover={{ y: -4 }}
-                  >
-                    <p className="text-2xl font-black text-foreground">{s.value}</p>
-                    <p className="text-xs text-muted-foreground mt-1 font-medium leading-snug">{s.label}</p>
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </div>
         </motion.div>
