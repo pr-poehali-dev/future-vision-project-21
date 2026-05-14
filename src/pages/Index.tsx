@@ -19,8 +19,8 @@ const Index = () => {
         <FeaturesSection />
         <ShowcaseSection />
         <CarouselSection />
-        <InsightsSection />
         <PricingSection />
+        <InsightsSection />
         <FooterSection />
       </main>
     </LenisProvider>

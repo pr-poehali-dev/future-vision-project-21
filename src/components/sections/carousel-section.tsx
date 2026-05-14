@@ -1,52 +1,35 @@
 import { motion } from "framer-motion"
 
-const portfolioItems = [
-  "/portfolio-website-design-preview-modern.jpg",
-  "/photography-portfolio-website-clean.jpg",
-  "/architecture-firm-website-minimal.jpg",
-  "/design-agency-portfolio-dark-theme.jpg",
-  "/artist-portfolio-website-creative.jpg",
-  "/writer-portfolio-website-elegant.jpg",
+const marqueeItems = [
+  "Ракетный запуск",
+  "Бытовки и дома",
+  "Авито под ключ",
+  "700+ просмотров",
+  "3 дня до заявок",
+  "Упаковка и стратегия",
+  "Строительный бизнес",
+  "Воронка продаж",
 ]
 
 export function CarouselSection() {
-  // Duplicate for seamless loop
-  const items = [...portfolioItems, ...portfolioItems]
+  const items = [...marqueeItems, ...marqueeItems, ...marqueeItems]
 
   return (
-    <section className="bg-primary py-24 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 mb-12">
-        <motion.h2
-          className="text-3xl md:text-4xl font-serif text-primary-foreground"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Создано авторами для авторов.
-        </motion.h2>
-      </div>
-
+    <section className="bg-primary py-16 overflow-hidden">
       <div className="relative">
         <motion.div
-          className="flex gap-6"
-          animate={{ x: [0, "-50%"] }}
+          className="flex gap-8 whitespace-nowrap"
+          animate={{ x: [0, "-33.33%"] }}
           transition={{
-            duration: 30,
+            duration: 25,
             repeat: Infinity,
             ease: "linear",
           }}
         >
-          {items.map((src, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 w-[300px] md:w-[400px] rounded-xl overflow-hidden shadow-2xl"
-              data-clickable
-            >
-              <img
-                src={src || "/placeholder.svg"}
-                alt={`Пример портфолио ${(i % portfolioItems.length) + 1}`}
-                className="w-full h-auto"
-              />
+          {items.map((item, i) => (
+            <div key={i} className="flex-shrink-0 flex items-center gap-8">
+              <span className="text-primary-foreground text-lg md:text-xl font-bold tracking-wide">{item}</span>
+              <span className="w-1.5 h-1.5 bg-primary-foreground/40 rounded-full flex-shrink-0" />
             </div>
           ))}
         </motion.div>

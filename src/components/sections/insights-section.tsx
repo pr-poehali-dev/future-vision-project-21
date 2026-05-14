@@ -1,100 +1,82 @@
-import type React from "react"
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-
-const articles = [
-  {
-    title: "Искусство визуального сторителлинга",
-    category: "Дизайн",
-    image: "/visual-storytelling-design-article.jpg",
-  },
-  {
-    title: "Как создать личный бренд онлайн",
-    category: "Стратегия",
-    image: "/personal-branding-digital-marketing.jpg",
-  },
-  {
-    title: "Тренды типографики 2025",
-    category: "Типографика",
-    image: "/typography-trends-modern-fonts.jpg",
-  },
-  {
-    title: "Минимализм в дизайне портфолио",
-    category: "Вдохновение",
-    image: "/placeholder.svg?height=200&width=300",
-  },
-]
+import { motion } from "framer-motion"
+import Icon from "@/components/ui/icon"
 
 export function InsightsSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePosition({ x: e.clientX, y: e.clientY })
-  }
+  const [name, setName] = useState("")
+  const [contact, setContact] = useState("")
 
   return (
-    <section className="bg-background px-6 py-24" onMouseMove={handleMouseMove}>
-      <div className="max-w-4xl mx-auto">
-        <motion.p
-          className="text-muted-foreground text-sm uppercase tracking-widest mb-8"
+    <section className="bg-secondary px-6 py-24">
+      <div className="max-w-2xl mx-auto">
+        <motion.div
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Статьи
-        </motion.p>
+          <p className="text-muted-foreground text-xs uppercase tracking-widest mb-4 font-semibold">Обратная связь</p>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground tracking-tight">
+            Получите бесплатный разбор
+          </h2>
+          <p className="text-muted-foreground mt-3 font-medium">
+            Отвечу лично и скажу, есть ли смысл заходить в вашу нишу
+          </p>
+        </motion.div>
 
-        <div className="divide-y divide-border">
-          {articles.map((article, i) => (
-            <motion.a
-              key={i}
-              href="#"
-              className="group flex items-center justify-between py-6 relative"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              whileHover={{ paddingLeft: 16, paddingRight: 16 }}
+        <motion.div
+          className="bg-background rounded-3xl p-8 shadow-xl shadow-foreground/5 border border-border/40"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+        >
+          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Имя</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Ваше имя"
+                className="bg-secondary border-0 rounded-2xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary font-medium text-sm"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Telegram или WhatsApp
+              </label>
+              <input
+                type="text"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                placeholder="@username или +7 900 000 00 00"
+                className="bg-secondary border-0 rounded-2xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary font-medium text-sm"
+              />
+            </div>
+
+            <motion.button
+              type="submit"
+              className="w-full bg-primary text-primary-foreground py-4 rounded-2xl font-bold text-base mt-2 hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+              whileHover={{ scale: 1.01, y: -1 }}
+              whileTap={{ scale: 0.98 }}
               data-clickable
             >
-              <div className="flex-1">
-                <span className="text-xs text-muted-foreground uppercase tracking-wider">{article.category}</span>
-                <h3 className="font-serif text-xl md:text-2xl text-foreground mt-1 group-hover:text-primary transition-colors">
-                  {article.title}
-                </h3>
-              </div>
-              <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-            </motion.a>
-          ))}
-        </div>
+              <Icon name="Rocket" size={18} />
+              Получить разбор
+            </motion.button>
+          </form>
 
-        {/* Floating hover image */}
-        <AnimatePresence>
-          {hoveredIndex !== null && (
-            <motion.div
-              className="fixed pointer-events-none z-50 w-[200px] md:w-[300px] rounded-lg overflow-hidden shadow-2xl hidden md:block"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                x: mousePosition.x + 20,
-                y: mousePosition.y - 100,
-              }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.2 }}
-            >
-              <img
-                src={articles[hoveredIndex].image || "/placeholder.svg"}
-                alt={articles[hoveredIndex].title}
-                className="w-full h-auto"
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+          <div className="flex items-center gap-3 mt-6 p-4 bg-primary/5 rounded-2xl">
+            <div className="w-8 h-8 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Icon name="Shield" size={16} className="text-primary" />
+            </div>
+            <p className="text-xs text-muted-foreground font-medium leading-relaxed">
+              Без спама. Отвечу лично и честно скажу, подойдёт ли Авито для вашей ниши.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

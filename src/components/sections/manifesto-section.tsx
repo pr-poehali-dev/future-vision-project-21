@@ -13,23 +13,30 @@ export function ManifestoSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[80vh] flex items-center justify-center bg-background px-6 py-32"
+      className="relative min-h-[70vh] flex items-center justify-center bg-background px-6 py-32"
     >
-      <div className="max-w-5xl mx-auto relative">
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-tight text-center text-foreground/10">
-          Хватит делать сайты.
+      <div className="max-w-5xl mx-auto relative text-center">
+        {/* Background ghost text */}
+        <h2 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight text-foreground/6 tracking-tight">
+          Хватит терять заявки.
           <br />
-          Пора рассказывать истории.
+          Авито — ваш новый отдел продаж.
         </h2>
 
-        {/* Gradient mask reveal text */}
+        {/* Animated reveal */}
         <motion.h2
-          className="absolute inset-0 text-4xl md:text-6xl lg:text-7xl font-serif leading-tight text-center bg-gradient-to-r from-purple-700 via-purple-400 to-purple-700 bg-clip-text text-transparent"
-          style={{ clipPath }}
+          className="absolute inset-0 text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight"
+          style={{
+            clipPath,
+            background: "linear-gradient(135deg, hsl(0 72% 30%) 0%, hsl(0 72% 48%) 50%, hsl(220 15% 20%) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
         >
-          Хватит делать сайты.
+          Хватит терять заявки.
           <br />
-          Пора рассказывать истории.
+          Авито — ваш новый отдел продаж.
         </motion.h2>
       </div>
     </section>
