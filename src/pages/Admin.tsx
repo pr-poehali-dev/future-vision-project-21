@@ -15,7 +15,15 @@ export default function Admin() {
   const [authed, setAuthed] = useState(false)
   const [leads, setLeads] = useState<Lead[]>([])
   const [loading, setLoading] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
+  const [deletingId, setDeletingId] = useState<number | null>(null)
   const [error, setError] = useState("")
+
+  async function fetchLeads() {
+    const res = await fetch(`${LEADS_URL}?password=${encodeURIComponent(PASSWORD)}`)
+    const data = await res.json()
+    if (res.ok) setLeads(data.leads)
+  }
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
@@ -25,15 +33,22 @@ export default function Admin() {
     }
     setLoading(true)
     setError("")
-    const res = await fetch(`${LEADS_URL}?password=${encodeURIComponent(password)}`)
-    const data = await res.json()
-    if (res.ok) {
-      setLeads(data.leads)
-      setAuthed(true)
-    } else {
-      setError("Ошибка загрузки")
-    }
+    await fetchLeads()
+    setAuthed(true)
     setLoading(false)
+  }
+
+  async function handleRefresh() {
+    setRefreshing(true)
+    await fetchLeads()
+    setRefreshing(false)
+  }
+
+  async function handleDelete(id: number) {
+    setDeletingId(id)
+    await fetch(`${LEADS_URL}?password=${encodeURIComponent(PASSWORD)}&id=${id}`, { method: "DELETE" })
+    setLeads((prev) => prev.filter((l) => l.id !== id))
+    setDeletingId(null)
   }
 
   function formatDate(iso: string) {
@@ -73,8 +88,18 @@ export default function Admin() {
     <div className="min-h-screen bg-background px-4 py-10">
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-black text-foreground">Заявки</h1>
-          <span className="text-muted-foreground text-sm">{leads.length} шт.</span>
+          <div>
+            <h1 className="text-2xl font-black text-foreground">Заявки</h1>
+            <p className="text-muted-foreground text-sm mt-0.5">{leads.length} шт.</p>
+          </div>
+          <button
+            onClick={handleRefresh}
+            disabled={refreshing}
+            className="flex items-center gap-2 bg-secondary hover:bg-secondary/80 text-foreground text-sm font-semibold px-4 py-2.5 rounded-xl transition disabled:opacity-50"
+          >
+            <span className={refreshing ? "animate-spin inline-block" : ""}>↻</span>
+            {refreshing ? "Обновляю..." : "Обновить"}
+          </button>
         </div>
 
         {leads.length === 0 ? (
@@ -82,12 +107,19 @@ export default function Admin() {
         ) : (
           <div className="flex flex-col gap-3">
             {leads.map((lead) => (
-              <div key={lead.id} className="bg-card border border-border rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div>
+              <div key={lead.id} className="bg-card border border-border rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex-1">
                   <p className="font-bold text-foreground">{lead.name}</p>
                   <p className="text-primary text-sm mt-0.5">{lead.contact}</p>
+                  <p className="text-muted-foreground text-xs mt-1">{formatDate(lead.created_at)}</p>
                 </div>
-                <p className="text-muted-foreground text-xs shrink-0">{formatDate(lead.created_at)}</p>
+                <button
+                  onClick={() => handleDelete(lead.id)}
+                  disabled={deletingId === lead.id}
+                  className="shrink-0 text-xs text-muted-foreground hover:text-red-500 border border-border hover:border-red-400 rounded-xl px-3 py-1.5 transition disabled:opacity-40"
+                >
+                  {deletingId === lead.id ? "..." : "Удалить"}
+                </button>
               </div>
             ))}
           </div>

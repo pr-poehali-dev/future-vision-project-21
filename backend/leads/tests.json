@@ -21,6 +21,12 @@
       "method": "GET",
       "path": "/",
       "expectedStatus": 403
+    },
+    {
+      "name": "Delete lead without password",
+      "method": "DELETE",
+      "path": "/?id=999",
+      "expectedStatus": 403
     }
   ]
 }

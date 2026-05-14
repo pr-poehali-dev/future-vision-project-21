@@ -21,7 +21,7 @@ def handler(event: dict, context) -> dict:
             "statusCode": 200,
             "headers": {
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type",
                 "Access-Control-Max-Age": "86400",
             },
@@ -61,5 +61,22 @@ def handler(event: dict, context) -> dict:
         conn.close()
         leads = [{"id": r["id"], "name": r["name"], "contact": r["contact"], "created_at": str(r["created_at"])} for r in rows]
         return {"statusCode": 200, "headers": headers, "body": json.dumps({"leads": leads})}
+
+    if method == "DELETE":
+        params = event.get("queryStringParameters") or {}
+        password = params.get("password", "")
+        lead_id = params.get("id", "")
+        if password != ADMIN_PASSWORD:
+            return {"statusCode": 403, "headers": headers, "body": json.dumps({"error": "forbidden"})}
+        if not lead_id:
+            return {"statusCode": 400, "headers": headers, "body": json.dumps({"error": "id required"})}
+
+        conn = get_conn()
+        cur = conn.cursor()
+        cur.execute("DELETE FROM leads WHERE id = %s", (int(lead_id),))
+        conn.commit()
+        cur.close()
+        conn.close()
+        return {"statusCode": 200, "headers": headers, "body": json.dumps({"ok": True})}
 
     return {"statusCode": 405, "headers": headers, "body": json.dumps({"error": "method not allowed"})}
