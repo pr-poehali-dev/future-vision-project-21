@@ -127,14 +127,7 @@ export function HeroSection({ onOpenModal }: { onOpenModal: () => void }) {
               <p className="text-xs text-muted-foreground font-semibold">Просмотры сегодня</p>
               <p className="text-2xl font-black text-foreground">712 <span className="text-primary text-sm">↑</span></p>
             </motion.div>
-            <motion.div
-              className="absolute -top-4 -right-4 bg-primary text-white rounded-2xl px-4 py-2.5 shadow-lg text-sm font-bold"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.5, type: "spring" }}
-            >
-              🚀 За 3 дня
-            </motion.div>
+
           </div>
         </motion.div>
       </div>
