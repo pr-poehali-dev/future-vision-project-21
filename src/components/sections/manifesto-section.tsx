@@ -28,7 +28,7 @@ export function ManifestoSection() {
           className="absolute inset-0 text-4xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tight"
           style={{
             clipPath,
-            background: "linear-gradient(135deg, hsl(0 72% 30%) 0%, hsl(0 72% 48%) 50%, hsl(220 15% 20%) 100%)",
+            background: "linear-gradient(135deg, #1976d2 0%, #2196f3 50%, #42a5f5 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",

@@ -6,32 +6,32 @@
 
 @layer base {
   :root {
-    /* Avito — Deep Red & Graphite Theme */
-    --background: 0 0% 99%;
-    --foreground: 220 15% 10%;
-    --surface: 0 0% 97%;
-    --ink: 220 15% 10%;
-    --iris: 0 72% 38%;
-    --lilac: 0 60% 92%;
-    --lime: 0 60% 92%;
-    --muted-foreground: 220 8% 46%;
+    /* Avito — Dark Navy & Electric Blue Theme */
+    --background: 220 35% 8%;
+    --foreground: 0 0% 98%;
+    --surface: 220 30% 12%;
+    --ink: 0 0% 98%;
+    --iris: 214 100% 55%;
+    --lilac: 214 100% 20%;
+    --lime: 214 100% 20%;
+    --muted-foreground: 220 15% 60%;
 
-    --card: 0 0% 97%;
-    --card-foreground: 220 15% 10%;
-    --popover: 0 0% 99%;
-    --popover-foreground: 220 15% 10%;
-    --primary: 0 72% 38%;
-    --primary-foreground: 0 0% 99%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 220 15% 10%;
-    --muted: 0 0% 96%;
-    --accent: 0 0% 93%;
-    --accent-foreground: 220 15% 10%;
+    --card: 220 30% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 220 30% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 214 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 28% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 220 28% 15%;
+    --accent: 220 28% 18%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 10% 91%;
-    --input: 220 10% 91%;
-    --ring: 0 72% 38%;
+    --border: 220 25% 20%;
+    --input: 220 25% 20%;
+    --ring: 214 100% 55%;
 
     --radius: 1rem;
 

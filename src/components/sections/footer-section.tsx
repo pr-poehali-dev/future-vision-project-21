@@ -11,7 +11,7 @@ export function FooterSection() {
   return (
     <footer className="relative bg-foreground px-6 py-16 overflow-hidden">
       <div className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(circle at 80% 50%, hsl(0 72% 38%) 0%, transparent 60%)" }}
+        style={{ backgroundImage: "radial-gradient(circle at 80% 50%, #1976d2 0%, transparent 60%)" }}
       />
 
       <div className="relative max-w-6xl mx-auto">

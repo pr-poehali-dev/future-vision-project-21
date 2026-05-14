@@ -14,49 +14,71 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center bg-background px-6 py-24 overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden px-6 py-24"
+      style={{
+        background: "linear-gradient(160deg, hsl(220 50% 14%) 0%, hsl(215 60% 10%) 40%, hsl(220 40% 7%) 100%)",
+      }}
     >
-      {/* Subtle background accent */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/4 rounded-full blur-3xl pointer-events-none" />
+      {/* Sky glow effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-blue-500/8 rounded-full blur-3xl" />
+      </div>
 
-      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         {/* Left — Text */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10"
         >
-          <motion.div
-            className="inline-flex items-center gap-2 bg-primary/8 text-primary text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-8"
+          <motion.p
+            className="text-foreground/60 text-sm font-semibold uppercase tracking-widest mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-            Авито-маркетинг
-          </motion.div>
+            Вам не нужен авитолог
+          </motion.p>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground leading-[1.05] tracking-tight">
-            Ракетный
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground leading-[1.0] tracking-tight">
+            Вам нужен
             <br />
-            <span className="text-primary">запуск</span>
+            <span
+              className="font-black"
+              style={{
+                background: "linear-gradient(90deg, #2196f3 0%, #42a5f5 50%, #1976d2 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Ракетный
+              <br />
+              запуск
+            </span>
             <br />
             Авито
           </h1>
 
-          <p className="text-lg text-foreground/70 mt-6 max-w-md leading-relaxed font-medium">
-            Запущу Ваш аккаунт Авито за 3 дня: упаковка, стратегия, объявления и готовая воронка под заявки
+          <p className="text-foreground/70 mt-6 max-w-md leading-relaxed font-medium text-base">
+            Упаковка, стратегия, объявления и готовая воронка под заявки — за 3 дня под ключ
           </p>
 
-          <p className="text-sm text-muted-foreground mt-3 font-medium">
+          <p className="text-foreground/45 text-sm mt-3 font-medium">
             Для строительных компаний, бытовок, бань, услуг и локального бизнеса
           </p>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mt-10">
             <motion.button
-              className="bg-primary text-primary-foreground px-8 py-4 rounded-2xl text-base font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
+              className="text-white px-8 py-4 rounded-2xl text-base font-bold transition-all"
+              style={{
+                background: "linear-gradient(135deg, #1976d2 0%, #2196f3 100%)",
+                boxShadow: "0 8px 32px rgba(33,150,243,0.35)",
+              }}
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
               data-clickable
             >
               Получить разбор
@@ -64,109 +86,35 @@ export function HeroSection() {
 
             <div className="flex items-center gap-3">
               <div className="text-3xl font-black text-foreground">12 500 ₽</div>
-              <span className="text-sm text-muted-foreground font-medium">за полный запуск</span>
+              <span className="text-sm text-foreground/45 font-medium">за полный запуск</span>
             </div>
           </div>
+
+          <motion.div
+            className="inline-flex items-center gap-2 mt-8 border border-primary/40 bg-primary/10 text-primary text-sm font-bold px-5 py-2.5 rounded-2xl"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
+            <Icon name="Rocket" size={16} />
+            За 3 дня
+          </motion.div>
         </motion.div>
 
-        {/* Right — UI Card */}
+        {/* Right — Hero image */}
         <motion.div
-          className="relative"
+          className="relative flex items-center justify-center"
           style={{ y }}
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Main card */}
-          <div className="bg-white rounded-3xl shadow-2xl shadow-foreground/8 border border-border/40 p-6 relative">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-5">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                  <Icon name="BarChart2" size={18} className="text-white" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground font-medium">Аккаунт Авито</p>
-                  <p className="text-sm font-bold text-foreground">Бытовки Москва</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-1.5 bg-green-50 text-green-600 text-xs font-semibold px-3 py-1.5 rounded-full">
-                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                Активен
-              </div>
-            </div>
-
-            {/* Stats row */}
-            <div className="grid grid-cols-3 gap-3 mb-5">
-              {[
-                { label: "Просмотры", value: "712", icon: "Eye", up: true },
-                { label: "Заявки", value: "18", icon: "MessageCircle", up: true },
-                { label: "CTR", value: "6.4%", icon: "TrendingUp", up: true },
-              ].map((stat) => (
-                <div key={stat.label} className="bg-secondary rounded-2xl p-3 text-center">
-                  <Icon name={stat.icon as "Eye"} size={14} className="text-primary mx-auto mb-1" />
-                  <p className="text-lg font-black text-foreground">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground font-medium">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Mini chart */}
-            <div className="bg-secondary rounded-2xl p-4 mb-4">
-              <div className="flex items-end gap-1.5 h-16">
-                {[30, 50, 40, 70, 55, 80, 65, 90, 75, 100, 85, 95].map((h, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex-1 bg-primary/20 rounded-sm"
-                    style={{ height: `${h}%` }}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${h}%` }}
-                    transition={{ duration: 0.6, delay: 0.8 + i * 0.05 }}
-                  >
-                    <div
-                      className="w-full bg-primary rounded-sm"
-                      style={{ height: i >= 9 ? "100%" : "40%" }}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-              <p className="text-xs text-muted-foreground mt-2 font-medium">Динамика просмотров за 12 дней</p>
-            </div>
-
-            {/* Notifications */}
-            <div className="space-y-2">
-              {[
-                { text: "Новая заявка от Михаила", time: "2 мин назад", icon: "Bell" },
-                { text: "Объявление в ТОП-3 выдачи", time: "15 мин назад", icon: "Rocket" },
-              ].map((n, i) => (
-                <motion.div
-                  key={i}
-                  className="flex items-center gap-3 bg-secondary rounded-xl px-3 py-2.5"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.2 + i * 0.2 }}
-                >
-                  <div className="w-7 h-7 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon name={n.icon as "Bell"} size={13} className="text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-semibold text-foreground truncate">{n.text}</p>
-                    <p className="text-[10px] text-muted-foreground">{n.time}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Floating badge */}
-          <motion.div
-            className="absolute -top-4 -right-4 bg-primary text-white px-4 py-2 rounded-2xl text-sm font-bold shadow-lg"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.5, type: "spring" }}
-          >
-            🚀 Запуск за 3 дня
-          </motion.div>
+          <img
+            src="https://cdn.poehali.dev/files/2ef249a5-05c1-4fcd-a5e9-48b0761a92f6.png"
+            alt="Ракетный запуск Авито"
+            className="w-full max-w-[560px] rounded-3xl object-cover"
+            style={{ filter: "drop-shadow(0 24px 60px rgba(33,150,243,0.25))" }}
+          />
         </motion.div>
       </div>
 
