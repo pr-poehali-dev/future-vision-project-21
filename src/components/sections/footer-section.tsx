@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { useNavigate } from "react-router-dom"
 import Icon from "@/components/ui/icon"
 
 const socials = [
@@ -8,6 +9,7 @@ const socials = [
 ]
 
 export function FooterSection() {
+  const navigate = useNavigate()
   return (
     <footer className="relative bg-foreground px-6 py-16 overflow-hidden">
       <div className="absolute inset-0 opacity-5 pointer-events-none"
@@ -77,6 +79,16 @@ export function FooterSection() {
             <Icon name="Rocket" size={14} className="text-primary" />
             <span className="text-primary-foreground/30 text-sm font-medium">Запуск Авито под ключ</span>
           </div>
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <button
+            onClick={() => navigate("/admin")}
+            className="text-primary-foreground/10 hover:text-primary-foreground/20 text-xs transition-colors select-none"
+            tabIndex={-1}
+          >
+            ·
+          </button>
         </div>
       </div>
     </footer>

@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "Submit lead",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Тест", "contact": "@test"},
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get leads with password",
+      "method": "GET",
+      "path": "/?password=Kfks42334msmdf",
+      "expectedStatus": 200,
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get leads without password",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 403
+    }
+  ]
+}

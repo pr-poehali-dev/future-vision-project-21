@@ -1,0 +1,6 @@
+CREATE TABLE leads (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  contact TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);

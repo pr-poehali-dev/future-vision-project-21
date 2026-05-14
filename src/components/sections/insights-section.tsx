@@ -2,9 +2,26 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Icon from "@/components/ui/icon"
 
+const LEADS_URL = "https://functions.poehali.dev/c3e1e068-7fa2-4061-a06b-0fa37484232f"
+
 export function LeadModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [name, setName] = useState("")
   const [contact, setContact] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [sent, setSent] = useState(false)
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!name.trim() || !contact.trim()) return
+    setLoading(true)
+    await fetch(LEADS_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, contact }),
+    })
+    setLoading(false)
+    setSent(true)
+  }
 
   return (
     <AnimatePresence>
@@ -51,46 +68,57 @@ export function LeadModal({ open, onClose }: { open: boolean; onClose: () => voi
                 </p>
               </div>
 
-              <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Имя</label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Ваше имя"
-                    className="bg-secondary border-0 rounded-2xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary font-medium text-sm"
-                  />
+              {sent ? (
+                <div className="flex flex-col items-center gap-3 py-6 text-center">
+                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Icon name="Check" size={28} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-black text-foreground">Заявка отправлена!</h3>
+                  <p className="text-muted-foreground text-sm font-medium">Я свяжусь с вами в ближайшее время.</p>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Имя</label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Ваше имя"
+                      className="bg-secondary border-0 rounded-2xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary font-medium text-sm"
+                    />
+                  </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                    Telegram или WhatsApp
-                  </label>
-                  <input
-                    type="text"
-                    value={contact}
-                    onChange={(e) => setContact(e.target.value)}
-                    placeholder="@username или +7 900 000 00 00"
-                    className="bg-secondary border-0 rounded-2xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary font-medium text-sm"
-                  />
-                </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                      Telegram или WhatsApp
+                    </label>
+                    <input
+                      type="text"
+                      value={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                      placeholder="@username или +7 900 000 00 00"
+                      className="bg-secondary border-0 rounded-2xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary font-medium text-sm"
+                    />
+                  </div>
 
-                <motion.button
-                  type="submit"
-                  className="w-full text-white py-4 rounded-2xl font-bold text-base mt-1 flex items-center justify-center gap-2"
-                  style={{
-                    background: "linear-gradient(135deg, #1976d2 0%, #2196f3 100%)",
-                    boxShadow: "0 8px 24px rgba(33,150,243,0.30)",
-                  }}
-                  whileHover={{ scale: 1.01, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  data-clickable
-                >
-                  <Icon name="Rocket" size={18} />
-                  Получить разбор
-                </motion.button>
-              </form>
+                  <motion.button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full text-white py-4 rounded-2xl font-bold text-base mt-1 flex items-center justify-center gap-2 disabled:opacity-60"
+                    style={{
+                      background: "linear-gradient(135deg, #1976d2 0%, #2196f3 100%)",
+                      boxShadow: "0 8px 24px rgba(33,150,243,0.30)",
+                    }}
+                    whileHover={{ scale: 1.01, y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    data-clickable
+                  >
+                    <Icon name={loading ? "Loader" : "Rocket"} size={18} />
+                    {loading ? "Отправляю..." : "Получить разбор"}
+                  </motion.button>
+                </form>
+              )}
 
               <div className="flex items-center gap-3 mt-5 p-4 bg-primary/8 rounded-2xl">
                 <Icon name="Shield" size={15} className="text-primary flex-shrink-0" />
