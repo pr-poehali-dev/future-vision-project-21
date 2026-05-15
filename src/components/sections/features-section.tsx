@@ -64,7 +64,7 @@ export function FeaturesSection() {
                 transition={{ delay: 0.15 }}
               >
                 <h2 className="text-3xl md:text-5xl font-black text-foreground">Кирилл Суриков</h2>
-                <p className="text-primary font-semibold mt-2 text-base">Авитолог · Маркетинг · Запуск воронок</p>
+                <p className="text-primary font-semibold mt-2 text-base">Авитолог · Маркетинг · Запуск Авито под ключ</p>
                 <p className="text-muted-foreground mt-5 text-base font-medium leading-relaxed max-w-lg">
                   Помогаю строительному бизнесу, продавцам бытовок и локальным компаниям получать заявки через Авито.
                   Запускаю аккаунты под ключ — без лишних подрядчиков и долгих согласований.
