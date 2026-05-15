@@ -97,7 +97,7 @@ export function LeadModal({ open, onClose }: { open: boolean; onClose: () => voi
 
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                      Telegram или WhatsApp
+                      Telegram или MAX
                     </label>
                     <input
                       type="text"
