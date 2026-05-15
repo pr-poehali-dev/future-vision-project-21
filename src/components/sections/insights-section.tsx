@@ -9,6 +9,7 @@ export function LeadModal({ open, onClose }: { open: boolean; onClose: () => voi
   const [name, setName] = useState("")
   const [contact, setContact] = useState("")
   const [loading, setLoading] = useState(false)
+  const [sent, setSent] = useState(false)
   const navigate = useNavigate()
 
   async function handleSubmit(e: React.FormEvent) {
@@ -21,6 +22,7 @@ export function LeadModal({ open, onClose }: { open: boolean; onClose: () => voi
       body: JSON.stringify({ name, contact }),
     })
     setLoading(false)
+    setSent(true)
     if (typeof window !== "undefined" && (window as unknown as { ym?: (id: number, action: string, goal: string) => void }).ym) {
       (window as unknown as { ym: (id: number, action: string, goal: string) => void }).ym(109234883, "reachGoal", "lead_form_submit")
     }
