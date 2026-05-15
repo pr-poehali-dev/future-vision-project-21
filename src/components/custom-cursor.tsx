@@ -43,8 +43,8 @@ export function CustomCursor() {
     <motion.div
       className="pointer-events-none fixed left-0 top-0 z-[9999] hidden md:block"
       animate={{
-        x: position.x - (isHovering ? 20 : 4),
-        y: position.y - (isHovering ? 20 : 4),
+        x: position.x - (isHovering ? 22 : 6),
+        y: position.y - (isHovering ? 22 : 6),
         opacity: isVisible ? 1 : 0,
       }}
       transition={{ type: "spring", stiffness: 500, damping: 28 }}
@@ -52,11 +52,11 @@ export function CustomCursor() {
       <motion.div
         className="rounded-full bg-iris"
         animate={{
-          width: isHovering ? 40 : 8,
-          height: isHovering ? 40 : 8,
-          backgroundColor: isHovering ? "transparent" : "#5B21B6",
-          borderWidth: isHovering ? 1 : 0,
-          borderColor: "#5B21B6",
+          width: isHovering ? 44 : 12,
+          height: isHovering ? 44 : 12,
+          backgroundColor: isHovering ? "transparent" : "#ffffff",
+          borderWidth: isHovering ? 1.5 : 0,
+          borderColor: "#ffffff",
         }}
         transition={{ duration: 0.2 }}
         style={{ borderStyle: "solid" }}
