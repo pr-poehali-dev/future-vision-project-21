@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import Icon from "@/components/ui/icon"
 
 const LEADS_URL = "https://functions.poehali.dev/c3e1e068-7fa2-4061-a06b-0fa37484232f"
@@ -123,6 +123,12 @@ export function LeadModal({ open, onClose }: { open: boolean; onClose: () => voi
                     <Icon name={loading ? "Loader" : "Rocket"} size={18} />
                     {loading ? "Отправляю..." : "Получить разбор"}
                   </motion.button>
+                  <p className="text-xs text-muted-foreground/60 text-center mt-1">
+                    Нажимая кнопку, вы соглашаетесь с{" "}
+                    <Link to="/privacy" target="_blank" className="underline hover:text-muted-foreground transition-colors">
+                      политикой конфиденциальности
+                    </Link>
+                  </p>
                 </form>
               )}
 
