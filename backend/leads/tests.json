@@ -27,6 +27,13 @@
       "method": "DELETE",
       "path": "/?id=999",
       "expectedStatus": 403
+    },
+    {
+      "name": "Patch status without password",
+      "method": "PATCH",
+      "path": "/",
+      "body": {"id": 999, "status": "deal"},
+      "expectedStatus": 403
     }
   ]
 }
