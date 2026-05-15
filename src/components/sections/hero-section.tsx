@@ -66,9 +66,7 @@ export function HeroSection({ onOpenModal }: { onOpenModal: () => void }) {
             Упаковка, стратегия, объявления и готовая воронка под заявки — за 3 дня под ключ
           </p>
 
-          <p className="text-foreground/45 text-sm mt-3 font-medium">
-            Для строительных компаний, бытовок, бань, услуг и локального бизнеса
-          </p>
+          <p className="text-foreground/45 text-sm mt-3 font-medium">Для любой ниши</p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mt-10">
             <motion.button
