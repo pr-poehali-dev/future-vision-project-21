@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useNavigate } from "react-router-dom"
 import Icon from "@/components/ui/icon"
 
 const LEADS_URL = "https://functions.poehali.dev/c3e1e068-7fa2-4061-a06b-0fa37484232f"
@@ -8,7 +9,7 @@ export function LeadModal({ open, onClose }: { open: boolean; onClose: () => voi
   const [name, setName] = useState("")
   const [contact, setContact] = useState("")
   const [loading, setLoading] = useState(false)
-  const [sent, setSent] = useState(false)
+  const navigate = useNavigate()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -20,10 +21,10 @@ export function LeadModal({ open, onClose }: { open: boolean; onClose: () => voi
       body: JSON.stringify({ name, contact }),
     })
     setLoading(false)
-    setSent(true)
     if (typeof window !== "undefined" && (window as unknown as { ym?: (id: number, action: string, goal: string) => void }).ym) {
       (window as unknown as { ym: (id: number, action: string, goal: string) => void }).ym(109234883, "reachGoal", "lead_form_submit")
     }
+    navigate("/thank-you")
   }
 
   return (
