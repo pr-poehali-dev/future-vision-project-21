@@ -25,13 +25,13 @@ export function PricingSection({ onOpenModal }: { onOpenModal: () => void }) {
         </motion.div>
 
         <motion.div
-          className="max-w-lg mx-auto"
+          className="max-w-3xl mx-auto flex flex-col md:flex-row gap-6 items-start justify-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          <div className="bg-secondary rounded-3xl p-8 md:p-10 relative border border-border/60">
+          <div className="flex-1 bg-secondary rounded-3xl p-8 md:p-10 relative border border-border/60">
             {/* Badge */}
             <div className="absolute -top-4 left-1/2 -translate-x-1/2">
               <span className="bg-primary text-primary-foreground text-xs font-bold px-5 py-2 rounded-full shadow-lg">
@@ -78,6 +78,36 @@ export function PricingSection({ onOpenModal }: { onOpenModal: () => void }) {
             <p className="text-center text-xs text-muted-foreground mt-4 font-medium">
               Без предоплаты — сначала созваниваемся
             </p>
+          </div>
+
+          {/* Unavailable card */}
+          <div className="relative flex-shrink-0 w-full md:w-72 rounded-3xl border border-border/30 bg-secondary/40 p-7 overflow-hidden select-none">
+            {/* Blur overlay */}
+            <div className="absolute inset-0 backdrop-blur-[2px] bg-background/40 z-10 rounded-3xl flex flex-col items-center justify-center gap-2">
+              <span className="bg-secondary border border-border/60 text-muted-foreground text-xs font-bold px-4 py-2 rounded-full">
+                🔒 Скоро
+              </span>
+              <p className="text-muted-foreground text-xs font-medium">Пока недоступно</p>
+            </div>
+
+            <div className="opacity-40">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Ведение</p>
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="text-4xl font-black text-foreground">30 000</span>
+                <span className="text-xl font-bold text-muted-foreground">₽</span>
+              </div>
+              <p className="text-muted-foreground text-xs font-medium mb-6">ежемесячно</p>
+              <ul className="space-y-3">
+                {["Полное ведение аккаунта", "Обновление объявлений", "Аналитика и отчёты", "Поддержка 24/7"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-foreground/70">
+                    <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Icon name="Check" size={10} className="text-primary" />
+                    </div>
+                    <span className="text-xs font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </motion.div>
       </div>
