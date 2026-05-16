@@ -33,8 +33,8 @@ export function PricingSection({ onOpenModal }: { onOpenModal: () => void }) {
         >
           <div className="flex-1 bg-secondary rounded-3xl p-8 md:p-10 relative border border-border/60">
             {/* Badge */}
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-              <span className="bg-primary text-primary-foreground text-xs font-bold px-5 py-2 rounded-full shadow-lg">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-max max-w-[90%]">
+              <span className="bg-primary text-primary-foreground text-xs font-bold px-4 py-2 rounded-full shadow-lg whitespace-nowrap">
                 🚀 Ракетный запуск Авито
               </span>
             </div>
