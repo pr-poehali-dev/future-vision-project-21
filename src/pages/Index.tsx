@@ -1,6 +1,4 @@
 import { useState } from "react"
-import { LenisProvider } from "@/components/lenis-provider"
-import { CustomCursor } from "@/components/custom-cursor"
 import { HeroSection } from "@/components/sections/hero-section"
 import { ManifestoSection } from "@/components/sections/manifesto-section"
 import { FeaturesSection } from "@/components/sections/features-section"
@@ -13,9 +11,7 @@ const Index = () => {
   const [modalOpen, setModalOpen] = useState(false)
 
   return (
-    <LenisProvider>
-      <main className="custom-cursor bg-background">
-        <CustomCursor />
+    <main className="bg-background">
         <HeroSection onOpenModal={() => setModalOpen(true)} />
         <ManifestoSection />
         <FeaturesSection />
@@ -24,7 +20,6 @@ const Index = () => {
         <PricingSection onOpenModal={() => setModalOpen(true)} />
         <LeadModal open={modalOpen} onClose={() => setModalOpen(false)} />
       </main>
-    </LenisProvider>
   )
 }
 

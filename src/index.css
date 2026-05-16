@@ -87,11 +87,6 @@
   }
 }
 
-/* Custom cursor styles */
-.custom-cursor {
-  cursor: none;
-}
-
 /* Serrated ticket edge */
 .ticket-edge {
   mask-image:
@@ -100,28 +95,6 @@
   mask-size: 51% 100%;
   mask-position: left, right;
   mask-repeat: no-repeat;
-}
-
-/* Smooth scrolling with Lenis */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
 }
 
 /* Animation keyframes */
